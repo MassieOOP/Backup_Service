@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Telecom.dao.BackupInfoDao">
+    <select id="selectBackupInfoList" resultType="com.Telecom.entity.BackupInfo">
+        SELECT * FROM `backupinfo`;
+    </select>
+    <insert id="addBackupInfo" parameterType="com.Telecom.entity.BackupInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO backupinfo(userNameA,userNameB,ipA,ipB,backupPathA,backupPathB,`time`,state)
+        VALUES(#{userNameA},#{userNameB},#{ipA},#{ipB},#{backupPathA},#{backupPathB},#{time},#{state});
+    </insert>
+    <update id="stopBackupById" parameterType="Long">
+        UPDATE backupinfo SET state = '0' WHERE `id` = #{id};
+    </update>
+    <update id="enableBackupById" parameterType="Long">
+        UPDATE backupinfo SET state = '1' WHERE `id` = #{id};
+    </update>
+</mapper>
