@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--status="WARN" :用于设置log4j2自身内部日志的信息输出级别，默认是OFF-->
+<!--monitorInterval="30"  :间隔秒数,自动检测配置文件的变更和重新配置本身-->
+<configuration status="WARN" monitorInterval="30">
+    <!--appenders:定义输出内容,输出格式,输出方式,日志保存策略等,常用其下三种标签[console,File,RollingFile]-->
+    <appenders>
+        <!--console :控制台输出的配置-->
+        <console name="Console" target="SYSTEM_OUT">
+            <!--PatternLayout :输出日志的格式,LOG4J2定义了输出代码,详见第二部分-->
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+        </console>
+        <!--File :同步输出日志到本地文件-->
+        <File name="log" fileName="E:/java/IDEA_Java_Workplace/Backup_Service/logs/log4j2.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </File>
+    </appenders>
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+    <loggers>
+        <logger name="org.springframework" level="FATAL"></logger>
+        <logger name="org.mybatis" level="FATAL"></logger>
+        <logger name="com.alibaba" level="FATAL"></logger>
+
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="log"/>
+        </root>
+    </loggers>
+</configuration>

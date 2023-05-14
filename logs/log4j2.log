@@ -1,0 +1,5 @@
+22:18:16.371 INFO  org.springframework.boot.StartupInfoLogger 55 logStarting - Starting MainApp using Java 1.8.0_341 on Godfrey with PID 12348 (E:\java\IDEA_Java_Workplace\Backup_Service\target\classes started by 22982 in E:\java\IDEA_Java_Workplace\Backup_Service)
+22:18:16.378 INFO  org.springframework.boot.SpringApplication 659 logStartupProfileInfo - No active profile set, falling back to default profiles: default
+22:18:17.440 INFO  org.springframework.boot.StartupInfoLogger 61 logStarted - Started MainApp in 1.29 seconds (JVM running for 2.095)
+22:19:02.055 INFO  com.Telecom.service.impl.BackupServiceImpl 77 backup - 成功将主机：root@192.168.160.136的 /backup_test2/*位置下的文件备份至 主机：root@47.95.208.87的/backup_test2/*位置下
+22:19:03.412 INFO  com.Telecom.service.impl.BackupServiceImpl 77 backup - 成功将主机：root@192.168.160.136的 /backup_test/*位置下的文件备份至 主机：root@47.95.208.87的/backup_test/*位置下

@@ -3,6 +3,8 @@ package com.Telecom.service.impl;
 import com.Telecom.dao.BackupInfoDao;
 import com.Telecom.entity.BackupInfo;
 import com.Telecom.service.BackupService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Service
 public class BackupServiceImpl implements BackupService {
+    private static final Logger logger = LoggerFactory.getLogger(BackupServiceImpl.class);
     //装配BackupInfoDao
     @Resource
     private BackupInfoDao backupInfoDao;
@@ -56,6 +59,7 @@ public class BackupServiceImpl implements BackupService {
         String infoA = userNameA + "@" + ipA + ":" + backupPathA;
         String infoB = userNameB + "@" + ipB + ":" + backupPathB;
 
+
         String[] command = {"scp", infoA, infoB};
         ProcessBuilder pb = new ProcessBuilder(command);
         pb.inheritIO();
@@ -66,9 +70,11 @@ public class BackupServiceImpl implements BackupService {
             exitCode = process.waitFor();
         } catch (IOException | InterruptedException e) {
             System.out.println("执行时发生错误,备份失败");
+            logger.error("备份时发生错误，错误信息为：" + e);
         }
         if (exitCode == 0) {
             System.out.println("File copied successfully.");
+            logger.info("成功将主机："+userNameA + "@" + ipA+"的 " + backupPathA +"位置下的文件备份至 主机：" + userNameB + "@" + ipB+"的"+backupPathA +"位置下");
         } else {
             System.out.println("File copy failed with exit code: " + exitCode);
         }
