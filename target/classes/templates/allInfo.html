@@ -1,0 +1,68 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>用户列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>备份id</th>
+                    <th>源服务器用户名</th>
+                    <th>目标服务器用户名</th>
+                    <th>源服务器ip地址</th>
+                    <th>目标服务器ip地址</th>
+                    <th>源路径</th>
+                    <th>目标路径</th>
+                    <th>备份时间</th>
+                    <th>备份状态</th>
+                </tr>
+                </thead>
+                <tr th:each="item:${backupInfos}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.userNameA}"></td>
+                    <td th:text="${item.userNameB}"></td>
+                    <td th:text="${item.ipA}"></td>
+                    <td th:text="${item.ipB}"></td>
+                    <td th:text="${item.backupPathA}"></td>
+                    <td th:text="${item.backupPathB}"></td>
+                    <td th:text="${item.time}"></td>
+                    <td th:text="${item.state}"></td>
+                    <td>
+                        <a :href="#">更改</a> |
+                        <a :href="#">删除</a>
+                    </td>
+                </tr>
+            </table>
+            <ul class="pagination justify-content-end" style="float: right">
+                <!--首页-->
+                <li class="page-item">
+                    <a class="page-link" th:href="'info?pageNum='+${pageInfo.navigateFirstPage}">首页</a>
+                </li>
+                <!--上一页-->
+                <li class="page-item">
+                    <a class="page-link" th:href="'info?pageNum='+${pageInfo.prePage}">上一页</a>
+                </li>
+                <!--循环遍历显示中间的页数-->
+                <li th:each="list:${pageInfo.navigatepageNums}">
+                    <a th:href="'info?pageNum='+${list}" th:text="${list}" th:if="${list != pageInfo.pageNum}"></a>
+                    <span style="font-weight: bold;background: #6faed9;" th:if="${list == pageInfo.pageNum}" th:text="${list}" ></span>
+                </li>
+                <!--下一页-->
+                <li class="page-item" th:if="${pageInfo.hasNextPage}">
+                    <a class="page-link" th:href="'info?pageNum='+${pageInfo.nextPage}">下一页</a>
+                </li>
+                <!--尾页-->
+                <li class="page-item"><a class="page-link" th:href="'info?pageNum='+${pageInfo.navigateLastPage}">尾页</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>

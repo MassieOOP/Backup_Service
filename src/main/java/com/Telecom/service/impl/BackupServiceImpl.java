@@ -3,6 +3,7 @@ package com.Telecom.service.impl;
 import com.Telecom.dao.BackupInfoDao;
 import com.Telecom.entity.BackupInfo;
 import com.Telecom.service.BackupService;
+import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -39,6 +40,12 @@ public class BackupServiceImpl implements BackupService {
     @Override
     public int enableBackupById(Long id) {
         return backupInfoDao.enableBackupById(id);
+    }
+
+    @Override
+    public List<BackupInfo> selectBackupInfoByPage(Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return backupInfoDao.selectBackupInfoList();
     }
 
 

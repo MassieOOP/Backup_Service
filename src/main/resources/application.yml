@@ -13,3 +13,22 @@ spring:
   profiles:
     active: dev
 
+#配置thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+    enabled: true
+
+
+#配置分页助手
+pagehelper:
+  reasonable: true
+  helper-dialect: mysql
+  support-methods-arguments: true
+
+

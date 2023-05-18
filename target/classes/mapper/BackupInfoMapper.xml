@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.Telecom.dao.BackupInfoDao">
     <select id="selectBackupInfoList" resultType="com.Telecom.entity.BackupInfo">
-        SELECT * FROM `backupinfo`;
+        SELECT * FROM `backupinfo`
     </select>
     <insert id="addBackupInfo" parameterType="com.Telecom.entity.BackupInfo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO backupinfo(userNameA,userNameB,ipA,ipB,backupPathA,backupPathB,`time`,state)

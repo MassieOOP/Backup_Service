@@ -22,4 +22,9 @@ public interface BackupService {
 
     //根据id值 将某项备份开启
     public int enableBackupById(Long id);
+
+    //分页查询
+    public List<BackupInfo>  selectBackupInfoByPage(Integer pageNum,Integer pageSize);
+
+
 }
